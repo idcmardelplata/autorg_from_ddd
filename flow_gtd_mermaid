@@ -1,0 +1,28 @@
+flowchart TD
+    A[Proceso] -->|Input| B( Que significa para mi?)
+    B -->|Significado| C{Es accionable?}
+    C -->|NO| CNO[Flujo PROCESAR NO ACCIONABLE]
+    CNO --> CHMM{Que deberia hacer}
+    CHMM --> Tirar
+    CHMM --> Algun_dia/Tal_vez
+    CHMM --> Referencia_de_proyecto/s
+    C -->|Si| CSI[Flujo PROCESAR ACCIONABLE]
+    CSI --> |Consultando recursos y situacion actual| E(Que creo que debo hacer)
+    E --> |Tarea/s| F{Cuantas acciones siguientes?}
+    F --> |Muchas| G[Flujo PLANIFICAR PROYECTO]
+    G --> I(Registrar proyectos cohesivos de acciones)
+    G --> |Para cada accion decidida| H
+    F --> |Una| H[Flujo organizar acciones]
+    H --> H1{Depende de mi?}
+    H1 --> H1SI(Si)
+    H1SI --> J{Es accion siguiente o esta bloqueada?}
+    J --> |Bloqueada| Q(Indicar la accion/es / proyecto/s que la bloquean)
+    Q --> W(Poner en lista de acciones bloqueadas)
+    J --> |Siguiente| K(Cuanto tiempo puedo dedicar?)
+    K --> |Tiempo| N(En que contexto es accionable)
+    N --> |Contexto| O(Cuanta energia requiere)
+    O --> |Energia| P[Almacenar]
+    H1 --> H1NO(No)
+    H1NO --> X(Delegar)
+    X --> Y(Registrar delegacion)
+
