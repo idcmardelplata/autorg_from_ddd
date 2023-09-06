@@ -40,6 +40,7 @@ class Test_Flow_Clarification:
         assert index_at_start < index_after_response
         
     
+
     def test_flow_should_has_a_unanswered_questions_list(self,flow):
         assert hasattr(flow,"unanswered_questions") and isinstance(flow.unanswered_questions,list)
     
