@@ -4,6 +4,7 @@ class Flow:
         self.name = name
         self.preguntas= list()
         self.index = 0
+        self.unanswered_questions:list = list()
         self.__load_questions(name) 
 
     def __load_questions(self,name:str):
@@ -25,3 +26,8 @@ class Flow:
 
     def answer_current_question(self,response:str):
         self.index=+1
+
+    def get_current_question(self):
+        return self
+
+

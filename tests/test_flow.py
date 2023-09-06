@@ -25,4 +25,7 @@ def test_flow_position_show_move_foward_when_a_question_is_answered():
     index_after_response = flow.get_index()
     assert index_at_start < index_after_response
     
+# when i answer a question then flow should give me another one different
 
+def test_flow_should_has_a_unanswered_questions_list():
+    assert hasattr(Flow("Clarification"), "unanswered_questions") and isinstance(Flow("Clarification").unanswered_questions,list)
