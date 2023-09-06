@@ -1,3 +1,4 @@
+# Input es una entidad debido a que se tendra un registro de no volver a ingresar un mismo input en el sistema
 class Input:
 
     ID:int 
