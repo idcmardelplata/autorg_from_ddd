@@ -20,3 +20,4 @@ class Test_Clarificacion_Servicio:
 
     def test_clarification_service_should_use_flow(self,serv):
         assert isinstance(serv.get_flow(),Flow)
+
