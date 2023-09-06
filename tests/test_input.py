@@ -8,17 +8,6 @@ import pytest
 #- Input: Entidad, representa una nueva informacion para el usuario
 #- Bandeja de inputs / Fuente: Es un almacen de inputs
 
-class Input:
-
-    ID:int 
-
-    def __init__(self,information:str,metadata:dict):
-        self.information = information
-        self.metadata = metadata
-        self.ID = 4
-
-    def get_id(self):
-        return self.ID
 
 def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
     information = "Something is happening"
