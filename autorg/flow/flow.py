@@ -3,6 +3,7 @@ class Flow:
     def __init__(self,name):
         self.name = name
         self.preguntas= list()
+        self.index = 0
         self.__load_questions(name) 
 
     def __load_questions(self,name:str):
@@ -15,3 +16,12 @@ class Flow:
 
     def get_questions(self):
         return self.preguntas
+
+    def start(self):
+        return self
+
+    def get_index(self):
+        return self.index
+
+    def answer_current_question(self,response:str):
+        self.index=+1

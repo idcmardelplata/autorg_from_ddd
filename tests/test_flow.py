@@ -17,3 +17,12 @@ def test_aa_clarification_flow_should_contain_clarification_questions():
     clarification_questions = [Pregunta(x) for x in str_clarification_questions]
     flow_questions = Flow("Clarification").get_questions()
     assert all([clarification_questions.get_question() == flow_questions.get_question() for clarification_questions, flow_questions in zip(clarification_questions, flow_questions)])
+
+def test_flow_position_show_move_foward_when_a_question_is_answered():
+    flow = Flow("Clarification")
+    index_at_start = flow.start().get_index()
+    flow.answer_current_question("Significa tal cosa")
+    index_after_response = flow.get_index()
+    assert index_at_start < index_after_response
+    
+
