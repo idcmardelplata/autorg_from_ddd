@@ -1,5 +1,5 @@
-from autorg.pregunta_srv import Pregunta
-from autorg.flow import Flow
+from autorg.pregunta.pregunta_srv import Pregunta
+from autorg.flow.flow import Flow
 class Clarificacion:
 
     def __init__(self):
