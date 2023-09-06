@@ -9,6 +9,36 @@ import pytest
 #- Input: Entidad, representa una nueva informacion para el usuario
 #- Bandeja de inputs / Fuente: Es un almacen de inputs
 
+# interface: read_content
+# text, video, audio
+# 
+
+# parser, from_csv, from_json, from_markdown
+
+# input -> (clarificar -> ordenable [logica])
+
+# tareas (la tarea es algo medianamente abstracto)
+#     con fecha de vencimiento
+#     para ahora
+#     con prioridad
+#     bloqueada_por: tarea
+#     is_action?
+
+
+#learning: #1, ddd,  #martin, modelado de dominios., #12-10-23
+#learning: { #1 }, ddd,  { #martin }, modelado de dominios., { #12-10-23 }
+
+# modelado de dominios
+
+# class input:
+
+
+
+
+    # larning: -> Aprendizaje (ddd)
+    # teachers: #martin, 
+
+
 
 def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
     information = "Something is happening"
