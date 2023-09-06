@@ -25,10 +25,11 @@ class Flow:
         return self.index
 
     def answer_current_question(self,response:str):
+        self.unanswered_questions.pop(0)
         self.index=+1
 
     def get_current_question(self):
-        return self
+        return self.unanswered_questions[0]
 
     def get_unanswered_questions(self):
         return self.unanswered_questions

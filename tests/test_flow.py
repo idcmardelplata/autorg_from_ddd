@@ -25,12 +25,10 @@ def test_flow_position_show_move_foward_when_a_question_is_answered():
     index_after_response = flow.get_index()
     assert index_at_start < index_after_response
     
-# when i answer a question then flow should give me another one different
 
 def test_flow_should_has_a_unanswered_questions_list():
     assert hasattr(Flow("Clarification"), "unanswered_questions") and isinstance(Flow("Clarification").unanswered_questions,list)
 
-#test_when_current_question_is_answered_then_unanswered_questions_list_should_remove_it():
 
 def test_flow_should_locate_all_unanswered_questions_in_unanswered_questions_list():
     flow = Flow("Clarification")
@@ -39,3 +37,14 @@ def test_flow_should_locate_all_unanswered_questions_in_unanswered_questions_lis
     unanswered_questions = flow.get_unanswered_questions()
     assert len(unanswered_questions)!= 0 and all([clarification_questions.get_question() == unanswered_questions.get_question() for clarification_questions, unanswered_questions in zip(clarification_questions, unanswered_questions)])
 
+def test_when_current_question_is_answered_then_unanswered_questions_list_should_remove_it():
+    flow = Flow("Clarification")
+    flow.start()
+    current_question = flow.get_current_question()
+    flow.answer_current_question("Something")
+    after_response_question = flow.get_current_question()
+    assert not current_question.get_question().__eq__(after_response_question.get_question())
+
+
+# when i answer a question then flow should give me another one different
+# clarification flow has subflows, procesar accionable, procesar no accionable, planificar proyecto... definir los subflujos y hacer que sgeun una respuesta se cambie de flujo 
