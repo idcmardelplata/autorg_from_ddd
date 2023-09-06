@@ -1,4 +1,5 @@
-from autorg.input import Input
+from autorg.domain.entities.input import Input, EmptyValueError, ValueTooLargeError
+
 import pytest
 # Should metadata be a dto or a set of pre derined interesting options like geolocalization?
 # Metadata's attributes are up to what kind of file is
@@ -38,8 +39,7 @@ import pytest
     # larning: -> Aprendizaje (ddd)
     # teachers: #martin, 
 
-# TODO: ¿Que ocurre con un input vacio?
-# TODO: ¿Que sucede con un input demasiado grande?
+# TODO: El input deberia tener metadatos por defecto?
 # TODO: ¿Que sucede si no se especifican los metadatos?
 # TODO: ¿Que tipos de metadatos son estrictamente necesarios que tenga un input?
 # TODO: ¿Es responsabilidad del input procesar los metadatos?
@@ -49,8 +49,20 @@ import pytest
 # TODO: ¿La bandeja de inputs debe dar todas las opciones para gestionar inputs?
 # TODO: Una vez procesados el inputs y los metadatos, ¿en que formato deberia pasarle la informacion al clarificador?
 # TODO: ¿Que datos necesita minimamente el clarificador para poder trabajar?
+# TEST: ¿Deberia crear un helper para las pruebas de los inputs?
 
 
+def test_an_input_should_not_be_empty():
+    input_content = ""
+    metadata = {}
+    with pytest.raises(EmptyValueError):
+        Input(input_content, metadata)
+
+def test_an_input_should_not_be_too_big():
+    input_content = "Some content" * 1000
+    metadata = {}
+    with pytest.raises(ValueTooLargeError):
+        Input(input_content, metadata)
 
 def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
     information = "Something is happening"
@@ -59,5 +71,4 @@ def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
 
 
 def test_input_should_has_an_id_attr():
-    # TODO: El input deberia tener metadatos por defecto?
     assert isinstance(Input("Something",dict() ).get_id(),int)
