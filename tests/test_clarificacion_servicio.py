@@ -1,0 +1,12 @@
+from autorg.clarification import Clarificacion
+from autorg.pregunta_srv import Pregunta
+import pytest
+
+# Este servicio da funcionalidad del flujo de clarificacion
+
+
+
+def test_clarification_flow_should_init_with_the_question_what_this_does_mean_to_me():
+    assert Clarificacion().flujo[0].get_question() == Pregunta("Que significa esto para mi").get_question()
+
+
