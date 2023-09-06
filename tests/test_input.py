@@ -50,14 +50,15 @@ import pytest
 # TODO: Una vez procesados el inputs y los metadatos, ¿en que formato deberia pasarle la informacion al clarificador?
 # TODO: ¿Que datos necesita minimamente el clarificador para poder trabajar?
 
+class Test_Input:
 
 
-def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
-    information = "Something is happening"
-    metadata = {"filename":"Data.txt"}
-    assert Input(information,metadata) != None
+    def test_given_a_information_and_file_metadata_should_be_defined_as_a_input(self):
+        information = "Something is happening"
+        metadata = {"filename":"Data.txt"}
+        assert Input(information,metadata) != None
 
 
-def test_input_should_has_an_id_attr():
-    # TODO: El input deberia tener metadatos por defecto?
-    assert isinstance(Input("Something",dict() ).get_id(),int)
+    def test_input_should_has_an_id_attr(self):
+        # TODO: El input deberia tener metadatos por defecto?
+        assert isinstance(Input("Something",dict() ).get_id(),int)
