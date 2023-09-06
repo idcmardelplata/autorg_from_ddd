@@ -38,6 +38,18 @@ import pytest
     # larning: -> Aprendizaje (ddd)
     # teachers: #martin, 
 
+# TODO: ¿Que ocurre con un input vacio?
+# TODO: ¿Que sucede con un input demasiado grande?
+# TODO: ¿Que sucede si no se especifican los metadatos?
+# TODO: ¿Que tipos de metadatos son estrictamente necesarios que tenga un input?
+# TODO: ¿Es responsabilidad del input procesar los metadatos?
+# TODO: ¿Donde vamos a almacenar temporalmente los inputs?
+# TODO: ¿Es necesario un `CRUD` de inputs?
+# TODO: ¿Es necesario poder buscar un input?
+# TODO: ¿La bandeja de inputs debe dar todas las opciones para gestionar inputs?
+# TODO: Una vez procesados el inputs y los metadatos, ¿en que formato deberia pasarle la informacion al clarificador?
+# TODO: ¿Que datos necesita minimamente el clarificador para poder trabajar?
+
 
 
 def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
@@ -47,4 +59,5 @@ def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
 
 
 def test_input_should_has_an_id_attr():
+    # TODO: El input deberia tener metadatos por defecto?
     assert isinstance(Input("Something",dict() ).get_id(),int)
