@@ -1,4 +1,4 @@
-from autorg.pregunta.pregunta_srv import Pregunta
+from autorg.pregunta.pregunta import Pregunta
 from autorg.flow.flow import Flow
 class Clarificacion:
 

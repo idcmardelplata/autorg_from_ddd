@@ -1,6 +1,6 @@
 from autorg.clarification import Clarificacion
 from autorg.flow.flow import Flow
-from autorg.pregunta.pregunta_srv import Pregunta
+from autorg.pregunta.pregunta import Pregunta
 import pytest
 
 # Este servicio da funcionalidad del flujo de clarificacion
