@@ -1,3 +1,4 @@
+from autorg.input import Input
 import pytest
 # Should metadata be a dto or a set of pre derined interesting options like geolocalization?
 # Metadata's attributes are up to what kind of file is
