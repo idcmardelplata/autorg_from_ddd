@@ -4,8 +4,8 @@ class Flow:
         self.name = name
         self.preguntas= list()
         self.index = 0
-        self.unanswered_questions:list = list()
         self.__load_questions(name) 
+        self.unanswered_questions:list = self.preguntas 
 
     def __load_questions(self,name:str):
         if name.__eq__("Clarification"):
@@ -30,4 +30,5 @@ class Flow:
     def get_current_question(self):
         return self
 
-
+    def get_unanswered_questions(self):
+        return self.unanswered_questions

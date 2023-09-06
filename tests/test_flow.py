@@ -29,3 +29,13 @@ def test_flow_position_show_move_foward_when_a_question_is_answered():
 
 def test_flow_should_has_a_unanswered_questions_list():
     assert hasattr(Flow("Clarification"), "unanswered_questions") and isinstance(Flow("Clarification").unanswered_questions,list)
+
+#test_when_current_question_is_answered_then_unanswered_questions_list_should_remove_it():
+
+def test_flow_should_locate_all_unanswered_questions_in_unanswered_questions_list():
+    flow = Flow("Clarification")
+    str_clarification_questions = ["Que significa esto para mi","Es accionable?","Que creo que debo hacer","Cuantas acciones atomicas","Depende de mi?","Es accion siguiente o esta bloqueada?","El no accionable tiene valor potencial?"]
+    clarification_questions = [Pregunta(x) for x in str_clarification_questions]
+    unanswered_questions = flow.get_unanswered_questions()
+    assert len(unanswered_questions)!= 0 and all([clarification_questions.get_question() == unanswered_questions.get_question() for clarification_questions, unanswered_questions in zip(clarification_questions, unanswered_questions)])
+
