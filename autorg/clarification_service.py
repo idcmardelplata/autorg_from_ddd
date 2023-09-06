@@ -1,6 +1,6 @@
 from autorg.pregunta.pregunta import Pregunta
 from autorg.flow.flow import Flow
-class Clarificacion:
+class Clarificacion_SRV:
 
     def __init__(self):
         self.flujo:list = list()
