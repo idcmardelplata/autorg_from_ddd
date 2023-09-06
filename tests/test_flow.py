@@ -2,8 +2,10 @@ from autorg.flow.flow import Flow
 from .helpers.fake_pregunta import Fake_Pregunta as Pregunta
 import pytest
 
-# Kind of flow should be an enum 
-# flow should use strategy for load questions
+# TODO: Kind of flow should be an enum 
+# TODO: flow should use strategy for load questions
+# TODO: when i answer a question then flow should give me another one different
+# TODO: clarification flow has subflows, procesar accionable, procesar no accionable, planificar proyecto... definir los subflujos y hacer que sgeun una respuesta se cambie de flujo 
 @pytest.mark.parametrize(
     ("flow"),
     [
@@ -12,6 +14,14 @@ import pytest
 )
 class Test_Flow_Clarification:
         
+    def test_given_a_name_flow_should_exists(self,flow):
+        assert flow!= None
+
+    def test_flow_questions_should_differ_between_a_clarification_and_another_flow(self,flow):
+        clarifi_questions = flow.get_questions() 
+        another_questions = Flow("Another").get_questions()
+        assert clarifi_questions[0].get_question() != another_questions [0].get_question()
+
     @pytest.fixture
     def clarification_questions(self,flow):
         str_clarification_questions = ["Que significa esto para mi","Es accionable?","Que creo que debo hacer","Cuantas acciones atomicas","Depende de mi?","Es accion siguiente o esta bloqueada?","El no accionable tiene valor potencial?"]
@@ -38,7 +48,6 @@ class Test_Flow_Clarification:
         flow.answer_current_question("Significa tal cosa")
         index_after_response = flow.get_index()
         assert index_at_start < index_after_response
-        
     
 
     def test_flow_should_has_a_unanswered_questions_list(self,flow):
@@ -56,5 +65,3 @@ class Test_Flow_Clarification:
         assert not current_question.get_question().__eq__(after_response_question.get_question())
     
     
-# when i answer a question then flow should give me another one different
-# clarification flow has subflows, procesar accionable, procesar no accionable, planificar proyecto... definir los subflujos y hacer que sgeun una respuesta se cambie de flujo 
