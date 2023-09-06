@@ -8,7 +8,7 @@ import pytest
 
 
 def test_clarification_flow_should_init_with_the_question_what_this_does_mean_to_me():
-    assert Clarificacion_SRV().flujo[0].get_question() == Pregunta("Que significa esto para mi").get_question()
+    assert Clarificacion_SRV().get_flow().preguntas[0].get_question() == Pregunta("Que significa esto para mi").get_question()
 
 def test_clarification_service_should_use_flow():
     assert isinstance(Clarificacion_SRV().get_flow(),Flow)
