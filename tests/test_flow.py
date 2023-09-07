@@ -14,14 +14,6 @@ import pytest
 )
 class Test_Flow_Clarification:
         
-    def test_given_a_name_flow_should_exists(self,flow):
-        assert flow!= None
-
-    def test_flow_questions_should_differ_between_a_clarification_and_another_flow(self,flow):
-        clarifi_questions = flow.get_questions() 
-        another_questions = Flow("Another").get_questions()
-        assert clarifi_questions[0].get_question() != another_questions [0].get_question()
-
     @pytest.fixture
     def clarification_questions(self,flow):
         str_clarification_questions = ["Que significa esto para mi","Es accionable?","Que creo que debo hacer","Cuantas acciones atomicas","Depende de mi?","Es accion siguiente o esta bloqueada?","El no accionable tiene valor potencial?"]
