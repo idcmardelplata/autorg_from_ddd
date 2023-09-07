@@ -5,9 +5,12 @@ class Input:
     ID:int 
 
     def __init__(self,information:str,metadata:dict):
-        self.information = self._check_input_content(information)
+        self._content = self._check_input_content(information)
         self.metadata = metadata
-        self.ID = 4
+        self._creation_date = metadata.get("creation_date")
+
+    def get_creation_date(self):
+        return self._creation_date 
 
     def get_id(self):
         return self.ID
@@ -19,6 +22,9 @@ class Input:
             raise ValueTooLargeError
         else:
             return content
+
+    def content(self):
+        return self._content
 
 
 class EmptyValueError(ValueError):

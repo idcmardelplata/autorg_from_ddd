@@ -1,6 +1,8 @@
 from autorg.domain.entities.input import Input, EmptyValueError, ValueTooLargeError
+from hashlib import md5
 
 import pytest
+from datetime import datetime
 # Should metadata be a dto or a set of pre derined interesting options like geolocalization?
 # Metadata's attributes are up to what kind of file is
    
@@ -52,9 +54,12 @@ import pytest
 # TEST: ¿Deberia crear un helper para las pruebas de los inputs?
 
 
+
 def test_an_input_should_not_be_empty():
     input_content = ""
-    metadata = {}
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+
+    metadata = {"creation_date" : input_creation_date}
     with pytest.raises(EmptyValueError):
         Input(input_content, metadata)
 
@@ -64,11 +69,20 @@ def test_an_input_should_not_be_too_big():
     with pytest.raises(ValueTooLargeError):
         Input(input_content, metadata)
 
-def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
-    information = "Something is happening"
-    metadata = {"filename":"Data.txt"}
-    assert Input(information,metadata) != None
+def test_should_get_the_input_content():
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+    sut = Input("Hello world", {"creation_date": input_creation_date})
+    assert sut.content() == "Hello world"
 
+# def test_the_id_of_the_input_must_be_defined_by_its_content():
+#     sut = Input("Someting")
+#     assert isinstance(Input("Something",dict() ).get_id(),int)
 
-def test_input_should_has_an_id_attr():
-    assert isinstance(Input("Something",dict() ).get_id(),int)
+def test_input_must_contain_its_creation_date():
+    input_content = "some random content"
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+    metadata = {"creation_date": input_creation_date}
+
+    sut = Input(input_content, metadata)
+    assert sut.get_creation_date() == input_creation_date
+
