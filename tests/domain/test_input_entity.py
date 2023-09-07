@@ -1,6 +1,4 @@
 from autorg.domain.entities.input import Input, EmptyValueError, ValueTooLargeError
-from hashlib import md5
-
 import pytest
 from datetime import datetime
 # Should metadata be a dto or a set of pre derined interesting options like geolocalization?
@@ -52,6 +50,7 @@ from datetime import datetime
 # TODO: Una vez procesados el inputs y los metadatos, ¿en que formato deberia pasarle la informacion al clarificador?
 # TODO: ¿Que datos necesita minimamente el clarificador para poder trabajar?
 # TEST: ¿Deberia crear un helper para las pruebas de los inputs?
+# TODO: La creacion de tareas require rellenar varios parametros, ¿deberiamos crearlos mediante una factoria?
 
 
 
@@ -74,9 +73,13 @@ def test_should_get_the_input_content():
     sut = Input("Hello world", {"creation_date": input_creation_date})
     assert sut.content() == "Hello world"
 
-# def test_the_id_of_the_input_must_be_defined_by_its_content():
-#     sut = Input("Someting")
-#     assert isinstance(Input("Something",dict() ).get_id(),int)
+def test_the_id_of_the_input_must_be_defined_by_its_content():
+    sut = Input("Someting", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })
+    assert type(sut.id()) is bytes
+
+def test_the_input_must_not_contain_any_spaces_before_or_after_its_content():
+    sut = Input(" random content wiht    some spaces    ", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })
+    assert sut.content() == "random content wiht    some spaces"
 
 def test_input_must_contain_its_creation_date():
     input_content = "some random content"
