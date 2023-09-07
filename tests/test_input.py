@@ -59,7 +59,7 @@ def test_an_input_should_not_be_empty():
         Input(input_content, metadata)
 
 def test_an_input_should_not_be_too_big():
-    input_content = "Some content" * 1000
+    input_content = "A" * 1001
     metadata = {}
     with pytest.raises(ValueTooLargeError):
         Input(input_content, metadata)
