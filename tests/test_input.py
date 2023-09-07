@@ -72,3 +72,6 @@ def test_given_a_information_and_file_metadata_should_be_defined_as_a_input():
 
 def test_input_should_has_an_id_attr():
     assert isinstance(Input("Something",dict() ).get_id(),int)
+
+def test_should_fail():
+    assert False
