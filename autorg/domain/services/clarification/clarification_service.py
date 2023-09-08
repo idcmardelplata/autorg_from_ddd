@@ -1,4 +1,4 @@
-from autorg.pregunta.pregunta import Pregunta
+from autorg.domain.entities.pregunta.pregunta import Pregunta
 from autorg.domain.services.flow.flow import Flow
 class Clarificacion_SRV:
 

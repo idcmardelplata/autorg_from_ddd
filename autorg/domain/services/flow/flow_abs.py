@@ -1,4 +1,4 @@
-from autorg.pregunta.pregunta_abs import Pregunta_ABS
+from autorg.domain.entities.pregunta.pregunta_abs import Pregunta_ABS
 class Flow_ABS:
     def __init__(self,name):
         self.name = name
