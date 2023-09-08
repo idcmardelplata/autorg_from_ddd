@@ -1,7 +1,7 @@
 from autorg.domain.entities.pregunta.pregunta import Pregunta
 from autorg.domain.services.flow.flow_abs import Flow_ABS
 class Flow(Flow_ABS):
-    def __init__(self,name):
+    def __init__(self,name:str):
         super().__init__(name)
         self.__load_questions(name) 
         self.unanswered_questions = self.preguntas 
