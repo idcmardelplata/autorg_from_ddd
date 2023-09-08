@@ -1,11 +1,10 @@
 from autorg.domain.entities.pregunta.pregunta import Pregunta
-class Flow:
+from autorg.domain.services.flow.flow_abs import Flow_ABS
+class Flow(Flow_ABS):
     def __init__(self,name):
-        self.name = name
-        self.preguntas= list()
-        self.index = 0
+        super().__init__(name)
         self.__load_questions(name) 
-        self.unanswered_questions:list = self.preguntas 
+        self.unanswered_questions = self.preguntas 
 
     def __load_questions(self,name:str):
         if name.__eq__("Clarification"):

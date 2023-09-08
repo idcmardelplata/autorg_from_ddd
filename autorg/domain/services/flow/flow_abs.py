@@ -4,8 +4,7 @@ class Flow_ABS:
         self.name = name
         self.preguntas= list()
         self.index = 0
-        self.__load_questions(name) 
-        self.unanswered_questions:list = self.preguntas 
+        self.unanswered_questions:list 
 
     def __load_questions(self,name:str):
         pass
