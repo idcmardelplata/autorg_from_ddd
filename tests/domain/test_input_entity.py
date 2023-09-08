@@ -1,5 +1,6 @@
-from autorg.input import Input
+from autorg.domain.entities.input import Input, EmptyValueError, ValueTooLargeError
 import pytest
+from datetime import datetime
 # Should metadata be a dto or a set of pre derined interesting options like geolocalization?
 # Metadata's attributes are up to what kind of file is
    
@@ -38,8 +39,7 @@ import pytest
     # larning: -> Aprendizaje (ddd)
     # teachers: #martin, 
 
-# TODO: ¿Que ocurre con un input vacio?
-# TODO: ¿Que sucede con un input demasiado grande?
+# TODO: El input deberia tener metadatos por defecto?
 # TODO: ¿Que sucede si no se especifican los metadatos?
 # TODO: ¿Que tipos de metadatos son estrictamente necesarios que tenga un input?
 # TODO: ¿Es responsabilidad del input procesar los metadatos?
@@ -49,6 +49,8 @@ import pytest
 # TODO: ¿La bandeja de inputs debe dar todas las opciones para gestionar inputs?
 # TODO: Una vez procesados el inputs y los metadatos, ¿en que formato deberia pasarle la informacion al clarificador?
 # TODO: ¿Que datos necesita minimamente el clarificador para poder trabajar?
+# TEST: ¿Deberia crear un helper para las pruebas de los inputs?
+# TODO: La creacion de tareas require rellenar varios parametros, ¿deberiamos crearlos mediante una factoria?
 
 class Test_Input:
 
@@ -58,7 +60,36 @@ class Test_Input:
         metadata = {"filename":"Data.txt"}
         assert Input(information,metadata) != None
 
+def test_an_input_should_not_be_empty():
+    input_content = ""
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+    with pytest.raises(EmptyValueError):
+        Input(input_content,{"creation_date": input_creation_date})
 
-    def test_input_should_has_an_id_attr(self):
-        # TODO: El input deberia tener metadatos por defecto?
-        assert isinstance(Input("Something",dict() ).get_id(),int)
+def test_an_input_should_not_be_too_big():
+    input_content = "A" * 1001
+    metadata = {}
+    with pytest.raises(ValueTooLargeError):
+        Input(input_content, metadata)
+
+def test_should_get_the_input_content():
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+    sut = Input("Hello world", {"creation_date": input_creation_date})
+    assert sut.content() == "Hello world"
+
+def test_the_id_of_the_input_must_be_defined_by_its_content():
+    sut = Input("Someting", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })
+    assert type(sut.id()) is bytes
+
+def test_the_input_must_not_contain_any_spaces_before_or_after_its_content():
+    sut = Input(" random content wiht    some spaces    ", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })
+    assert sut.content() == "random content wiht    some spaces"
+
+def test_input_must_contain_its_creation_date():
+    input_content = "some random content"
+    input_creation_date = datetime(2023, 9, 7, 16, 25, 18)
+    metadata = {"creation_date": input_creation_date}
+
+    sut = Input(input_content, metadata)
+    assert sut.get_creation_date() == input_creation_date
+
