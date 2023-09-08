@@ -1,4 +1,4 @@
-from autorg.flow.flow import Flow
+from autorg.domain.services.flow.flow import Flow
 from .helpers.fake_pregunta import Fake_Pregunta as Pregunta
 import pytest
 

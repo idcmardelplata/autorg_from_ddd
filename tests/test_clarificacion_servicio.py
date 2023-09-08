@@ -1,4 +1,4 @@
-from autorg.clarification_service import Clarificacion_SRV
+from autorg.domain.services.clarification.clarification_service import Clarificacion_SRV
 from .helpers.fake_flow import Fake_Flow as Flow
 from .helpers.fake_pregunta import Fake_Pregunta as Pregunta
 import pytest

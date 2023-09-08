@@ -1,5 +1,5 @@
 from .fake_pregunta import Fake_Pregunta as Pregunta
-from autorg.flow.flow_abs import Flow_ABS
+from autorg.domain.services.flow.flow_abs import Flow_ABS
 class Fake_Flow(Flow_ABS):
     def __init__(self,name):
         self.name = name
