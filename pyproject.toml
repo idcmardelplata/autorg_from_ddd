@@ -5,10 +5,14 @@ description = "An implementation of autorg using ddd"
 authors = ["ven <alessandrovmkt@gmail.com>"]
 license = "Free"
 readme = "README.md"
-packages = [{include = "autorg_from_ddd"}]
+packages = [{include = "autorg"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+
+[tool.poetry.scripts]
+
+autorg = "autorg.main:main"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.1"
