@@ -21,3 +21,7 @@ jobs:
       - name: Run unit tests
         run: |
           poetry run python ci/commit_stage.py
+
+      - name: Build the application
+        run: |
+          poetry run python ci/build_stage.py
