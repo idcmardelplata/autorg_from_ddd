@@ -10,7 +10,7 @@ async def build_package():
         container = (
             client.container()
             .from_("idcmardelplata/poetry:v01")
-            .with_directory("/src", client.host().directory("."), exclude=["ci"])
+            .with_directory("/src", client.host().directory("."), exclude=["ci", ".git", ".github", "diagrams", "docs", "tests", ".gitignore"])
             .with_workdir("/src")
             .with_exec(["poetry", "install"]))
 
