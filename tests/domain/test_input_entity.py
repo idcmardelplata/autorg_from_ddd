@@ -77,9 +77,9 @@ def test_should_get_the_input_content():
     sut = Input("Hello world", {"creation_date": input_creation_date})
     assert sut.content() == "Hello world"
 
-def test_the_id_of_the_input_must_be_defined_by_its_content():
+def test_the_id_of_the_input_should_be_defined_by_number():
     sut = Input("Someting", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })
-    assert type(sut.id()) is bytes
+    assert type(sut.id()) is int 
 
 def test_the_input_must_not_contain_any_spaces_before_or_after_its_content():
     sut = Input(" random content wiht    some spaces    ", {"creation_date": datetime(2023, 9, 7, 16, 25, 18) })

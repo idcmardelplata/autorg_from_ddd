@@ -1,4 +1,4 @@
-import hashlib
+import uuid
 class Input:
     """ 
     Input es una entidad debido a que se tendra un registro de no volver a ingresar un mismo input en el sistema
@@ -14,9 +14,8 @@ class Input:
         return self._creation_date 
 
     def id(self):
-        md5 = hashlib.md5()
-        md5.update(self._content.encode('utf-8'))
-        return md5.digest()
+        random_uid = uuid.uuid4()
+        return random_uid.int
 
     def _check_input_content(self, content: str):
         if len(content) == 0:
