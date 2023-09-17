@@ -18,6 +18,7 @@ autorg = "autorg.main:main"
 pytest = "^7.4.1"
 dagger-io = "^0.8.4"
 black = "^23.7.0"
+bandit = "^1.7.5"
 
 [build-system]
 requires = ["poetry-core"]
