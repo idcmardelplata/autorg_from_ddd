@@ -22,13 +22,12 @@ async def build_package():
         # Verify code vulnerabilities
         await verify_code.stderr()
 
-        # Build the code
+        # Build the code and put assets in the dist directory
+        await build.directory("dist").export("dist")
         await build.stdout()
 
         #Check build package
         await check_build.stdout()
-
-
 
 async def main():
     await build_package()
