@@ -8,23 +8,15 @@ arch=('any')
 url="https://github.com/Jose-Simon-Pepe/autorg_from_ddd"
 license=('MIT')
 depends=()
-makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+makedepends=('python' 'python-build' 'python-wheel' 'python-pipx' )
 checkdepends=()
-source=("https://github.com/Jose-Simon-Pepe/autorg_from_ddd/dist/$pkgname-$pkgver.tar.gz")
+source=("https://github.com/Jose-Simon-Pepe/autorg_from_ddd/blob/main/dist/$pkgname-$pkgver-py3-none-any.whl")
 sha512sums=('SKIP')
 
-build() {
-  # TODO: Verificar esta linea si llega a fallar.
-  cd autorg_from_ddd-$pkgver
-  python -m build --wheel --no-isolation
-}
-
 package() {
-  # TODO: Verificar esta linea si llega a fallar.
-  cd autorg_from_ddd-$pkgver
-  python -m installer --destdir="$pkgdir" dist/*.whl
+  git clone $url && cd $pkgname
 
-  # install -Dm644 LICENSE.md "$pkgdir"/usr/share/licenses/$pkgname/LICENSE.md
+  pipx install dist/$pkgname-$pkgver-py3-none-any.whl
 }
 
 # vim:set ts=2 sw=2 et:
