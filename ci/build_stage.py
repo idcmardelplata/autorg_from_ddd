@@ -15,13 +15,19 @@ async def build_package():
             .with_exec(["poetry", "install"]))
 
         verify_code = container.with_exec(["poetry", "run", "bandit", "-r", "autorg"])
-        build = container.with_exec(["poetry", "run", "autorg"])
+
+        build = container.with_exec(["poetry", "build"])
+        check_build = container.with_exec(["poetry", "run", "autorg"])
 
         # Verify code vulnerabilities
         await verify_code.stderr()
 
-        # Run the code
+        # Build the code
         await build.stdout()
+
+        #Check build package
+        await check_build.stdout()
+
 
 
 async def main():
