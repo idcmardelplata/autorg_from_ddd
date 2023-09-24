@@ -20,12 +20,14 @@ async def run(command: str):
 
         linter = ( python.with_exec(["poetry", "run", "black", "."]))
         unittest = ( python.with_exec(["poetry", "run", "pytest"]))
+        check_dead_code = (python.with_exec(["poetry", "run", "vulture", "autorg"]))
 
         options = {'linter': linter.stdout, 'unittest': unittest.stderr}
 
         if command == 'both':
             await linter.stdout()
             await unittest.stderr()
+            await check_dead_code.stderr()
         else:
             await options.get(command)()
 
