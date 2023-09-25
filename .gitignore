@@ -173,6 +173,9 @@ poetry.toml
 # ruff
 .ruff_cache/
 
+# diagrams folder
+diagrams/
+
 # LSP config files
 pyrightconfig.json
 
