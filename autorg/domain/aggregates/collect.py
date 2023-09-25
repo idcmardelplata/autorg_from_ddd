@@ -1,7 +1,6 @@
 from autorg.domain.protocols.protocols import Repository
 class Collect:
     def __init__(self, repository: Repository):
-        self._inputs = []
         self.repository = repository
 
     def _exists(self, text: str) -> bool:

@@ -1,11 +1,13 @@
-# from tests.helpers.factories import CollectFactory
 from tests.helpers.factories import CollectFactory
-
-
 
 #TEST: Should create a integration test for other types of repositories like csv, database etc.
 #TEST: Create a testfile for the application layer.
 #NOTE: Create base entity (input) and logic of this entity
+
+
+def test_smoke():
+    assert 1+1==2
+
 
 def test_added_input_should_store_in_list():
     sut = CollectFactory.create()
