@@ -18,11 +18,15 @@ def main():
 
     load_dotenv()
 
-    client = configure_flags()
 
-    if client.is_enabled("test-flag"):
-        print(f"test-flag is enabled")
-    else:
-        print("test-flag is disabed")
+    try:
+        client = configure_flags()
+
+        if client.is_enabled("test-flag"):
+            print(f"test-flag is enabled")
+        else:
+            print("test-flag is disabed")
+    except Exception as error:
+        print(f"Error getting feature-flag configuration: {error}")
 
 main()
