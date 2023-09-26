@@ -1,5 +1,5 @@
-#language: en
-Caracteristica: Clarificacion
+#language: es
+Característica: Clarificacion
   La Clarificacion es responder una serie de preguntas sobre el significado de un input para obtener organizables, y se hace desde una lista ordenada descendientemente por importancia de al menos un input
 
   @happy
