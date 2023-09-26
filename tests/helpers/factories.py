@@ -7,5 +7,6 @@ class CollectFactory:
         pass
 
     @staticmethod
-    def create(repository: Repository = InMemoryRepository()):
-        return Collect(repository)
+    def create():
+        repo = InMemoryRepository()
+        return Collect(repo)

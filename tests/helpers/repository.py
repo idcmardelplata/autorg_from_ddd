@@ -11,6 +11,9 @@ class InMemoryRepository(Repository):
     """
     items = []
 
+    def __init__(self):
+        self.items.clear()
+
     def getAll(self) -> list[str]:
         return self.items
 
