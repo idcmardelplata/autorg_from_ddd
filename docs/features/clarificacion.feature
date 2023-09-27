@@ -47,6 +47,11 @@ Característica: Clarificacion
     Entonces el sistema no deberia enlistar el significado dentro de algun dia tal vez 
     Y deberia notificar al usuario de que debe relacionar un incubable con un objetivo o mas
 
+  @happy
+  Escenario: el usuario desecha un input exitosamente
+    Dado que el usuario determino que un input era desechable
+    Entonces el sistema deberia enlistarlo en desechables
+
   @break_policy
   Escenario: el usuario no debe avanzar en la clarificacion si no responde apropiadamente alguna pregunta
     Dado que el usuario comenzo a clarificar algun input de la lista de ordenables
