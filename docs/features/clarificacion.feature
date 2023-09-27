@@ -16,4 +16,7 @@ Característica: Clarificacion
     Entonces el sistema no debe permitirle seguir adelante con la clarificacion
     Y debe notificarle de que debe responder apropiadamente la pregunta para poder avanzar
 
-
+  @break_policy
+  Escenario: no existen inputs a clarificar en la lista de ordenables
+    Dado que no existen inputs a clarificar en la lista de ordenables
+    Entonces el sistema debe notificar que no hay nada para clarificar
