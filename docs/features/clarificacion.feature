@@ -20,6 +20,25 @@ Característica: Clarificacion
       | consultable | consultables |
       | incubable | algun_dia_tal_vez |
 
+  @happy
+  Escenario: el usuario determina que un input es consultable
+    Dado que el usuario determino que el significado de un input es no accionable y consultable
+    Cuando quiera relacionarlo con un proyecto o mas existente/s
+    Entonces el sistema deberia mostrarle una lista de proyectos existentes
+    Y el usuario deberia poder seleccionar mas de uno para ser relacionado
+
+  @happy
+  Escenario: el usuario termina de clarificar un input consultable
+    Dado que el usuario determino que un input era consultable y lo relaciono con proyecto/s
+    Entonces el sistema deberia enlistar el significado dentro de consultables
+
+  @break_policy
+  Escenario: el usuario no relaciona un consultable con ningun proyecto
+    Dado que el usuario determino que un input era consultable
+    Pero no lo relaciono con proyecto alguno
+    Entonces el sistema no deberia enlistar el significado dentro de consultables
+    Y deberia notificar al usuario de que debe relacionar un consultable con un proyecto o mas
+
   @break_policy
   Escenario: el usuario no debe avanzar en la clarificacion si no responde apropiadamente alguna pregunta
     Dado que el usuario comenzo a clarificar algun input de la lista de ordenables
