@@ -7,7 +7,7 @@ Característica: Clarificacion
     Dado que hay al menos un input en la lista de ordenables
     Cuando el usuario define el significado subjetivo de un input
     Y responde todas las preguntas apropiadas en el flujo
-    Entonces el sistema deberia dejar algun tipo de organizable en la lista para organizar
+    Entonces el sistema deberia dejar por cada input algun tipo de organizable en la lista para organizar
 
   @break_policy
   Escenario: el usuario no debe avanzar en la clarificacion si no responde apropiadamente alguna pregunta
@@ -20,3 +20,5 @@ Característica: Clarificacion
   Escenario: no existen inputs a clarificar en la lista de ordenables
     Dado que no existen inputs a clarificar en la lista de ordenables
     Entonces el sistema debe notificar que no hay nada para clarificar
+
+
