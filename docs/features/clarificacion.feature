@@ -10,17 +10,6 @@ Característica: Clarificacion
     Entonces el sistema deberia dejar por cada input algun tipo de organizable en la lista para organizar
 
   @happy
-  Esquema del escenario: el usuario clarifica un input no accionable
-    Dado que se analizo que el significado de un input no es accionable
-    Cuando el usuario determine que es <organizable>
-    Entonces el sistema deberia enlistar el significado dentro de <lista>
-    Ejemplos:
-      | hacer | lista |
-      | desechable | desechos |
-      | consultable | consultables |
-      | incubable | algun_dia_tal_vez |
-
-  @happy
   Escenario: el usuario relaciona un input consultable con uno o mas proyectos
     Dado que el usuario determino que el significado de un input es no accionable y consultable
     Cuando quiera relacionarlo con un proyecto o mas existente/s
