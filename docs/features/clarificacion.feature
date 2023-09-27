@@ -9,6 +9,17 @@ Característica: Clarificacion
     Y responde todas las preguntas apropiadas en el flujo
     Entonces el sistema deberia dejar por cada input algun tipo de organizable en la lista para organizar
 
+  @happy
+  Esquema del escenario: el usuario clarifica un input no accionable
+    Dado que se analizo que el significado de un input no es accionable
+    Cuando el usuario determine que es <organizable>
+    Entonces el sistema deberia enlistar el significado dentro de <lista>
+    Ejemplos:
+      | hacer | lista |
+      | desechable | desechos |
+      | consultable | consultables |
+      | incubable | algun_dia_tal_vez |
+
   @break_policy
   Escenario: el usuario no debe avanzar en la clarificacion si no responde apropiadamente alguna pregunta
     Dado que el usuario comenzo a clarificar algun input de la lista de ordenables
@@ -21,4 +32,4 @@ Característica: Clarificacion
     Dado que no existen inputs a clarificar en la lista de ordenables
     Entonces el sistema debe notificar que no hay nada para clarificar
 
-
+  
