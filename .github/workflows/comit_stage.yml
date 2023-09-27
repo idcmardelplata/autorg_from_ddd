@@ -2,7 +2,9 @@
 name: Commit stage
 run-name: ${{github.actor}} esta probando el commit
 on: [push]
-
+  paths-ignore:
+    - 'docs/**'
+    
 jobs:
   test:
     runs-on: ubuntu-latest
