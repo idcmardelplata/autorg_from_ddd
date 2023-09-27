@@ -21,7 +21,7 @@ Característica: Clarificacion
       | incubable | algun_dia_tal_vez |
 
   @happy
-  Escenario: el usuario determina que un input es consultable
+  Escenario: el usuario relaciona un input consultable con uno o mas proyectos
     Dado que el usuario determino que el significado de un input es no accionable y consultable
     Cuando quiera relacionarlo con un proyecto o mas existente/s
     Entonces el sistema deberia mostrarle una lista de proyectos existentes
