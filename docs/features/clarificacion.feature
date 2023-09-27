@@ -39,6 +39,25 @@ Característica: Clarificacion
     Entonces el sistema no deberia enlistar el significado dentro de consultables
     Y deberia notificar al usuario de que debe relacionar un consultable con un proyecto o mas
 
+  @happy
+  Escenario: el usuario relaciona un input incubable con uno o mas objetivos existentes
+    Dado que el usuario determino que el significado de un input es no accionable e incubable
+    Cuando quiera relacionarlo con un objetivo o mas existentes
+    Entonces el sistema deberia mostrarle una lista de objetivos existentes junto a su valor de impacto
+    Y el usuario deberia poder seleccionar uno o mas para ser relacionado
+
+  @happy
+  Escenario: el usuario termina de clarificar un input incubable
+    Dado que el usuario determino que un input era incubable y lo relaciono con al menos un objetivo existente
+    Entonces el sistema deberia enlistar el incubable dentro de algun dia tal vez
+
+  @break_policy
+  Escenario: el usuario no relaciona un incubable con ningun objetivo
+    Dado que el usuario determino que un input era incubable
+    Pero no lo relaciono con objetivo alguno
+    Entonces el sistema no deberia enlistar el significado dentro de algun dia tal vez 
+    Y deberia notificar al usuario de que debe relacionar un incubable con un objetivo o mas
+
   @break_policy
   Escenario: el usuario no debe avanzar en la clarificacion si no responde apropiadamente alguna pregunta
     Dado que el usuario comenzo a clarificar algun input de la lista de ordenables
