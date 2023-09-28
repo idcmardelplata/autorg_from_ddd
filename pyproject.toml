@@ -24,6 +24,13 @@ bandit = "^1.7.5"
 vulture = "^2.9.1"
 behave = "^1.2.6"
 
+[tool.pytest.ini_options]
+testpaths = "tests"
+markers = [
+  "unit",
+  "integration"
+]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
