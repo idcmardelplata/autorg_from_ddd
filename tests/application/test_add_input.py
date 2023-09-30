@@ -7,20 +7,24 @@ from autorg.application.input import AppInput, EmptyValueError
 from tests.helpers.repository import InMemoryRepository
 
 
-@pytest.fixture
-def setup():
-    if os.path.exists("data.csv"):
-        os.remove("data.csv")
+class TestCollect:
 
-@pytest.mark.integration
-def test_app_should_has_add_input_case(setup):
-    repo = CsvRepository()
-    app = AppInput(repo)
-    app.add_input("input content")
-    assert repo.getAll()[0] == "input content"
 
-def test_add_input_not_accept_empty_strings():
-    repo = InMemoryRepository()
-    app = AppInput(repo)
-    with pytest.raises(EmptyValueError):
-        app.add_input("")
+    @classmethod
+    def teardown_class(_cls):
+        if os.path.exists("data.csv"):
+            os.remove("data.csv")
+
+
+    @pytest.mark.integration
+    def test_app_should_has_add_input_case(self):
+        repo = CsvRepository()
+        app = AppInput(repo)
+        app.add_input("input content")
+        assert repo.getAll()[0] == "input content"
+
+    def test_add_input_not_accept_empty_strings(self):
+        repo = InMemoryRepository()
+        app = AppInput(repo)
+        with pytest.raises(EmptyValueError):
+            app.add_input("")

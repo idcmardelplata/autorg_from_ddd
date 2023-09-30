@@ -10,7 +10,7 @@ import os
 class TestRepo:
 
     @classmethod
-    def teardown_class(cls):
+    def teardown_class(_cls):
         print("elimina el fichero data.csv")
         if os.path.exists("data.csv"):
             os.remove("data.csv")
@@ -26,11 +26,6 @@ class TestRepo:
         collect = Collect(repo)
         self.repo = repo
         self.collect = collect
-
-    def tear_down(self):
-        if os.path.exists("data.csv"):
-            os.remove("data.csv")
-
 
     @pytest.mark.integration
     def test_repo_should_store_data_in_csv_file(self):
