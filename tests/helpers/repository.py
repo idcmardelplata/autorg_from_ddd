@@ -1,4 +1,4 @@
-from autorg.domain.protocols.protocols import Repository
+from autorg.domain.protocols.repository import Repository
 
 class InMemoryRepository(Repository):
     """ Esta clase al derivar de la interfaz Repository 

@@ -1,4 +1,4 @@
-from autorg.domain.protocols.protocols import Repository
+from autorg.domain.protocols.repository import Repository
 class Collect:
     def __init__(self, repository: Repository):
         self.repository = repository

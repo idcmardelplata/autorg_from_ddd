@@ -1,6 +1,6 @@
 import os
 import csv
-from autorg.domain.protocols.protocols import Repository
+from autorg.domain.protocols.repository import Repository
 
 class CsvRepository(Repository):
     def __init__(self):
