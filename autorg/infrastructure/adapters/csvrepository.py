@@ -1,5 +1,6 @@
 import os
 import csv
+from typing import Optional
 from autorg.domain.protocols.repository import Repository
 
 class CsvRepository(Repository):
@@ -29,7 +30,7 @@ class CsvRepository(Repository):
              writer.writerows(rows)
              self._index += 1
 
-    def getAll(self) -> list[str] | None:
+    def getAll(self) -> Optional[list[str]]:
         rows = []
         if not self._file_exists():
             return None
@@ -38,4 +39,4 @@ class CsvRepository(Repository):
             reader = csv.reader(file)
             for row in reader:
                 rows.append(row[1])
-            return rows
+        return rows
