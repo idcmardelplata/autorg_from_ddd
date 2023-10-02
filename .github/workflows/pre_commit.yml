@@ -1,0 +1,30 @@
+name: pre-commit stage
+
+on:
+    push:
+        paths-ignore:
+            - 'docs/**'
+            - 'build/**'
+            - 'infra/**'
+            - '.gitignore'
+            - 'README.md
+            
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: pre-commit/action@v3.0.0
+    - name: "Setup Python, Poetry and Dependencies"
+        uses: packetcoders/action-setup-cache-python-poetry@main
+        with:
+          python-version: 3.11.3
+          poetry-version: 1.4.2
+    - name: Run unit tests
+        run: |
+          poetry run python ci/commit_stage.py
+
+    - name: Build the application
+        if: startsWith(github.ref, 'refs/tags')  
+        run: |
+          poetry run python ci/build_stage.py
