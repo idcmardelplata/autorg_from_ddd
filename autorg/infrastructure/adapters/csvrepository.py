@@ -1,6 +1,5 @@
 import os
 import csv
-from typing import Optional
 from autorg.domain.protocols.repository import Repository
 
 class CsvRepository(Repository):
