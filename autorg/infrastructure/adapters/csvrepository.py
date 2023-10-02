@@ -7,19 +7,10 @@ class CsvRepository(Repository):
     def __init__(self):
         self._repo_path = "data.csv"
         self._index = 0
+        self.rows = []
 
     def _file_exists(self):
         return os.path.exists(self._repo_path)
-
-    def find(self, data: str):
-        if not self._file_exists():
-            return False
-
-        with open(self._repo_path, 'r', encoding="utf-8") as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if row[1] == data:
-                    return int(row[0])
 
     def store(self, input_text: str) -> None:
         rows = [ [self._index, input_text] ]
@@ -30,13 +21,13 @@ class CsvRepository(Repository):
              writer.writerows(rows)
              self._index += 1
 
-    def getAll(self) -> Optional[list[str]]:
-        rows = []
-        if not self._file_exists():
-            return None
-
-        with open(self._repo_path, "r", encoding="utf-8") as file:
-            reader = csv.reader(file)
-            for row in reader:
-                rows.append(row[1])
-        return rows
+    def getAll(self) -> list[str]:
+        if len(self.rows) != 0:
+            return self.rows
+        else:
+            if  self._file_exists():
+                with open(self._repo_path, "r", encoding="utf-8") as file:
+                    reader = csv.reader(file)
+                    for row in reader:
+                        self.rows.append(row[1])
+        return self.rows
