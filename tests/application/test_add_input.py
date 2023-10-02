@@ -6,6 +6,7 @@ from autorg.infrastructure.adapters.csvrepository import CsvRepository
 from autorg.application.input import AppInput, EmptyValueError
 from tests.helpers.repository import InMemoryRepository
 
+# NOTE: Test collect should be called test add input because it's the real undertest
 
 class TestCollect:
 

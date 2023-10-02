@@ -5,8 +5,11 @@ import os
 
 
 #TEST: ¿Debo manejar alguna logica para borrar los elementos segun algun criterio?
+    # si, deberias borrar inputs que no se deseen clarificar
+    # la funcionalidad deberia agregarse primero desde app para usar los spyes 
 #TEST: Hay un bug sorpresa que deberias buscar josu.... :) #TaskForHome. #Tip (centrate en la funcionalidad basica del componente)
-
+# NOTE: El repositorio csv tiene un metodo, store, el cual deberia estar declarado en su interfaz a implementar!
+# TEST: solo puede incluirse un solo input por vez o deberia inserarse tambien por lista?
 class TestRepo:
 
     @classmethod
@@ -41,3 +44,9 @@ class TestRepo:
             self.collect.input(item)
     
         assert len(self.collect.getAll()) == len(items)
+        
+# TEST: deberia evaluarse el valor textual de los inputs devueltos para coorroborar el valor
+    def test_literal_content_should_be_the_same(self):
+        self.collect.input("item")
+        assert self.collect.getAll()[0] == "item"
+
