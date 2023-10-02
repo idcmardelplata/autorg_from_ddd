@@ -19,3 +19,6 @@ class InMemoryRepository(Repository):
 
     def store(self, input_text: str) -> None:
         self.items.append(input_text)
+
+    def find(self, input_text) -> bool:
+        return input_text in self.items
