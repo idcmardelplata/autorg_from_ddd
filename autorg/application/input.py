@@ -12,3 +12,6 @@ class AppInput:
         if content == '':
             raise EmptyValueError()
         self.aggregate.input(content)
+
+    def list_inputs(self) -> list:
+        return self.aggregate.getAll()
