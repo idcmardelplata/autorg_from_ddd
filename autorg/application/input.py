@@ -14,4 +14,6 @@ class AppInput:
         self.aggregate.input(content)
 
     def list_inputs(self) -> list:
-        return self.aggregate.getAll()
+        obtained = self.aggregate.getAll()
+        if len(obtained) == 0: return "La bandeja de entrada esta vacia"
+        else: return obtained
