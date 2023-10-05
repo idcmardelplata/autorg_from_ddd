@@ -1,17 +1,16 @@
 from typing import Protocol
 
+from autorg.domain.entities.input import Input
+
+
 class Repository(Protocol):
-    """ Un protocolo puede usarse como interfaz en otros lenguajes
-        En este caso estamos definiendo la interfaz Repository junto
-        con los metodos que debe tener.
+    """Un protocolo puede usarse como interfaz en otros lenguajes
+    En este caso estamos definiendo la interfaz Repository junto
+    con los metodos que debe tener.
     """
 
-    def getAll(self) -> list[str]:
-        pass
+    def getAll(self) -> list[Input]:
+        raise NotImplementedError()
 
-    # Ambos metodos estan comentados para mantener la interfaz simple y minimalista
-    # def store(self, input: str) -> None:
-    #     pass
-    #
-    # def find(self, input_text) -> bool:
-    #     pass
+    def store(self, item: Input):
+        raise NotImplementedError()
