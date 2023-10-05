@@ -20,8 +20,8 @@ def inbox(body: str):
         click.echo(f"Failed adding input, err={err}", color=True)
 
 @click.command(name="inbox-list")
-@click.argument("filtre")
-def inbox_list(filtre:str):
+# @click.argument("filtre")
+def inbox_list():
     app = AppInput(CsvRepository())
     click.echo(app.list_inputs())
 
