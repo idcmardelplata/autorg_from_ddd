@@ -17,6 +17,12 @@ def cmd_input(body: str):
     except Exception as err:
         click.echo(f"Failed adding input, err={err}", color=True)
 
+@click.command(name="inbox-list")
+@click.argument("filtre")
+def inbox_list(filtre:str):
+    app = AppInput(CsvRepository())
+    click.echo(app.list_inputs())
+
 
 if __name__ == "__main__":
     autorg.add_command(cmd_input)
