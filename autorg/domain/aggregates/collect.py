@@ -1,12 +1,11 @@
 from autorg.domain.entities.input import Entity, Input
 from autorg.domain.protocols.repository import Repository
-from tests.helpers.repository import InMemoryRepository
-
+from autorg.infrastructure.adapters.csvrepository import CsvRepository
 
 class Collect(Entity):
-    def __init__(self, repo: Repository = InMemoryRepository()):
+    def __init__(self, repo: Repository = CsvRepository()):
         self._id = 0
-        self._inputs = []
+        self._inputs: list[Input] = []
         self._repo = repo
 
     def id(self) -> int:

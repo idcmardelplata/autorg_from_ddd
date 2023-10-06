@@ -37,7 +37,7 @@ def inbox_list():
 #
 
 if __name__ == "__main__":
-    inbox = InboxCmd(help="Permite gestionar la bandeja de entrada")
+    # inbox = InboxCmd(help="Permite gestionar la bandeja de entrada")
     # inbox()
     autorg.add_command(inbox)
-    # autorg()
+    autorg()
