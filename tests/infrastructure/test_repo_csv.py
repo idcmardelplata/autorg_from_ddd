@@ -44,6 +44,14 @@ class TestRepo:
 
         assert len(self.collect.getAll()) == len(items)
 
+    @pytest.mark.integration
+    def test_input_id_should_increment_in_each_new_input(self):
+        self.collect.add_input("another input")
+        assert self.collect.getAll()[0].id() == 0
+        self.collect.add_input("another input 1")
+        self.collect.add_input("another input 2")
+        assert self.collect.getAll()[2].id() == 2
+    
     def test_literal_content_should_be_the_same(self):
         self.collect.add_input("item")
         result = self.collect.getAll().pop()

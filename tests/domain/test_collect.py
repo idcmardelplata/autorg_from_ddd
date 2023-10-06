@@ -38,4 +38,4 @@ def test_collect_can_hold_many_inputs():
 
 def test_input_list_should_be_stored():
     sut = CollectFactory.createWithInput()
-    assert sut.getAll()[0].value().get("content") == "some random input"
+    assert sut.getAll()[0].content() == "some random input"

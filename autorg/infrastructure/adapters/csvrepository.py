@@ -14,7 +14,7 @@ class CsvRepository(Repository):
         return os.path.exists(self._repo_path)
 
     def store(self, inp: Input) -> None:
-        row = [inp.id(), inp.value().get("creation_date"), inp.value().get("content")]
+        row = [str(inp.id()), inp.value().get("creation_date"), inp.value().get("content")]
 
         mode = "a" if os.path.exists("data.csv") else "w"
         with open(self._repo_path, mode, newline="") as file:
