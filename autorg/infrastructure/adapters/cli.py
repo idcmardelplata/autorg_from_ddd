@@ -1,4 +1,5 @@
 import click
+from autorg.application.dtos.input_dto import InputDto, make_dto_from_input
 
 from autorg.application.input import AppInput
 from autorg.infrastructure.adapters.csvrepository import CsvRepository
@@ -9,35 +10,27 @@ def autorg():
     pass
 
 
-@click.command(name="input")
-@click.argument("body")
-def inbox(body: str):
+@autorg.group
+def inbox():
+    pass
+
+@inbox.command(name="add", help="add a input to inbox")
+@click.argument("input_")
+def add_command(input_: str):
     try:
         app = AppInput(CsvRepository())
-        app.add_input(body)
+        app.add_input(input_)
         click.echo("The input was saved correctly", color=True)
     except Exception as err:
         click.echo(f"Failed adding input, err={err}", color=True)
 
-@click.command(name="inbox-list")
-# @click.argument("filtre")
-def inbox_list():
+@inbox.command(name="ls", help="show all inputs in the inbox")
+def ls_command():
     app = AppInput(CsvRepository())
-    click.echo(app.list_inputs())
+    inputs: list[str] = [make_dto_from_input(inp).content for inp in app.list_inputs()]
 
-
-# class InboxCmd(click.MultiCommand):
-#     def add(self, _, body: str):
-#         try:
-#             app = AppInput(CsvRepository())
-#             app.add_input(body)
-#             click.echo("The input was saved correctly", color=True)
-#         except Exception as err:
-#             click.echo(f"Failed adding input, err={err}", color=True)
-#
+    for item in inputs:
+        print(item)
 
 if __name__ == "__main__":
-    # inbox = InboxCmd(help="Permite gestionar la bandeja de entrada")
-    # inbox()
-    autorg.add_command(inbox)
     autorg()

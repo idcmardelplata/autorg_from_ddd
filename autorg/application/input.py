@@ -1,5 +1,7 @@
+from autorg.domain.entities.input import Input
 from autorg.domain.protocols.repository import Repository
 from autorg.domain.aggregates.collect import Collect
+
 
 
 class EmptyValueError(ValueError):
@@ -15,9 +17,6 @@ class AppInput:
             raise EmptyValueError()
         self.aggregate.add_input(content)
 
-    def list_inputs(self) -> list | str:
-        obtained = self.aggregate.getAll()
-        if len(obtained) == 0:
-            return "La bandeja de entrada esta vacia"
-        else:
-            return obtained
+    def list_inputs(self) -> list[Input]:
+        return self.aggregate.getAll()
+

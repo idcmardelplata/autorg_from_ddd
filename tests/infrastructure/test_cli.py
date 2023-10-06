@@ -1,6 +1,6 @@
 import pytest
 from click.testing import CliRunner
-from autorg.infrastructure.adapters.cli import inbox, inbox_list
+from autorg.infrastructure.adapters.cli import add_command, ls_command
 
 # TEST: debo verificar que el input ingresado haya quedado persistido
 # TEST: verificar que los inputs puedan filtrarse por hora/fecha
@@ -12,7 +12,7 @@ from autorg.infrastructure.adapters.cli import inbox, inbox_list
 @pytest.mark.integration
 def test_input_command_should_persist_data():
     runner = CliRunner()
-    sut = runner.invoke(inbox, ["random input"])
+    sut = runner.invoke(add_command, ["random input"])
     assert sut.output == "The input was saved correctly\n"
 
     # ¿How verify that the input was stored?
@@ -22,9 +22,9 @@ def test_input_command_should_persist_data():
 #FIX: Deberiamos replantear la forma de la prueba para que sea mas legible
 def test_list_inputs_should_show_a_list_of_all_inboxed_inputs():
     runner = CliRunner()
-    sut = runner.invoke(inbox, ["random input"])
-    sut = runner.invoke(inbox, ["random input 2"])
-    sut = runner.invoke(inbox_list, ["all"])
+    sut = runner.invoke(add_command, ["random input"])
+    sut = runner.invoke(add_command, ["random input 2"])
+    sut = runner.invoke(ls_command)
     actual =  [+1 for input in ["random input","random input 2"] if input in sut.output ]
     assert len(actual) == 2
     assert sut.exit_code == 0
