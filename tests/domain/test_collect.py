@@ -1,6 +1,7 @@
 from tests.helpers.factories import CollectFactory
 from autorg.domain.entities.input import Input
 from autorg.domain.aggregates.collect import Collect
+from tests.helpers.repository import InMemoryRepository
 
 # TEST: El agregado debe permitir almacenar los inputs a un repositorio.
 # TEST: El agregado debe permitir cargar los inputs desde un repositorio.
