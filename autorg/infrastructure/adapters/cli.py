@@ -34,6 +34,3 @@ def ls_command():
     else:
         for item in inputs:
             print(item)
-
-if __name__ == "__main__":
-    autorg()
