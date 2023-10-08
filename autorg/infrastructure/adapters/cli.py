@@ -29,8 +29,11 @@ def ls_command():
     app = AppInput(CsvRepository())
     inputs: list[str] = [make_dto_from_input(inp).content for inp in app.list_inputs()]
 
-    for item in inputs:
-        print(item)
+    if len(inputs) == 0:
+        click.echo("Not inputs found")
+    else:
+        for item in inputs:
+            print(item)
 
 if __name__ == "__main__":
     autorg()
