@@ -1,4 +1,5 @@
 import click
+import sys
 from autorg.application.dtos.input_dto import InputDto, make_dto_from_input
 
 from autorg.application.input import AppInput
@@ -22,7 +23,7 @@ def add_command(input_: str):
         app.add_input(input_)
         click.echo("The input was saved correctly", color=True)
     except Exception as err:
-        click.echo(f"Failed adding input, err={err}", color=True)
+        click.echo(click.style(f"Failed adding input, {err}", fg="red"), file=sys.stderr)
 
 @inbox.command(name="ls", help="show all inputs in the inbox")
 def ls_command():

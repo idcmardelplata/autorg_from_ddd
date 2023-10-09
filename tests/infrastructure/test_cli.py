@@ -35,7 +35,7 @@ class TestCli:
         sut = self.runner.invoke(add_command, ["random input"])
         sut = self.runner.invoke(add_command, ["random input 2"])
         sut = self.runner.invoke(ls_command)
-        actual =  [+1 for input in ["random input","random input 2"] if input in sut.output ]
+        actual =  [+1 for inp in ["random input","random input 2"] if inp in sut.output ]
         assert len(actual) == 2
         assert sut.exit_code == 0
     
@@ -44,4 +44,15 @@ class TestCli:
         sut = self.runner.invoke(ls_command)
         assert sut.output == "Not inputs found\n"
         assert sut.exit_code == 0
+
+    def test_dont_should_accept_duplicate_inputs(self):
+        self.runner.invoke(add_command, ["input"])
+        self.runner.invoke(add_command, ["input"])
+        sut = self.runner.invoke(ls_command)
+
+        assert sut.output == "input\n"
+
+
+
+    
 
