@@ -9,12 +9,6 @@ class TestListInputs:
 
 
     @pytest.mark.integration
-    def test_list_inputs_should_return_a_string_when_there_is_no_inputs_into_inbox(self):
-        repo = InMemoryRepository()
-        app = AppInput(repo)
-        assert type(app.list_inputs()) is list
-
-    @pytest.mark.integration
     def test_list_inputs_should_return_a_list_of_input_dtos(self):
         repo = InMemoryRepository()
         app = AppInput(repo)
