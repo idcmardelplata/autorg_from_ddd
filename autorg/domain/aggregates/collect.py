@@ -1,4 +1,5 @@
 from autorg.domain.entities.input import Entity, Input
+from autorg.application.dtos.input_dto import InputDto
 from autorg.domain.protocols.repository import Repository
 from autorg.infrastructure.adapters.csvrepository import CsvRepository
 
@@ -25,7 +26,8 @@ class Collect(Entity):
          else:
             raise DuplicateInputError("Input exists")
 
-    def getAll(self) -> list[Input]:
+    def getAll(self) -> list[InputDto]:
+        """Returns a list of dtos from existing inputs"""
         return self._inputs if len(self._inputs) > 0 else self._repo.getAll()
 
     def _gen_input_id(self) -> int:

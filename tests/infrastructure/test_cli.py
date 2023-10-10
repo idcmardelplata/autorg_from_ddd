@@ -49,7 +49,6 @@ class TestCli:
         self.runner.invoke(add_command, ["input"])
         self.runner.invoke(add_command, ["input"])
         sut = self.runner.invoke(ls_command)
-
         assert sut.output == "input\n"
 
 

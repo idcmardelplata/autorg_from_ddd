@@ -28,7 +28,7 @@ def add_command(input_: str):
 @inbox.command(name="ls", help="show all inputs in the inbox")
 def ls_command():
     app = AppInput(CsvRepository())
-    inputs: list[str] = [make_dto_from_input(inp).content for inp in app.list_inputs()]
+    inputs: list[str] = [inp.content for inp in app.list_inputs()]
 
     if len(inputs) == 0:
         click.echo("Not inputs found")
