@@ -15,19 +15,18 @@ class Collect(Entity):
     def id(self) -> int:
         return self._id
 
-    def add_input(self, content: str):
+    def add_input(self, input_dto: InputDto):
          if len(self._inputs) == 0:
              self._inputs = self._repo.getAll()
 
-         if not self._isDuplicate(content):
-            inp = self._make_input(content)
+         if not self._isDuplicate(input_dto.content):
+            inp = self._make_input(input_dto.content)
             self._repo.store(inp)
             self._inputs.append(inp)
          else:
             raise DuplicateInputError("Input exists")
 
     def getAll(self) -> list[InputDto]:
-        """Returns a list of dtos from existing inputs"""
         return self._inputs if len(self._inputs) > 0 else self._repo.getAll()
 
     def _gen_input_id(self) -> int:

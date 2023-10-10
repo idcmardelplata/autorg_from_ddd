@@ -1,4 +1,5 @@
 from tests.helpers.factories import CollectFactory
+from autorg.application.dtos.input_dto import InputDto
 from autorg.domain.entities.input import Input
 from autorg.domain.aggregates.collect import Collect, DuplicateInputError
 from tests.helpers.repository import InMemoryRepository
@@ -11,8 +12,8 @@ import pytest
 def test_aggregate_should_create_a_unique_id_for_each_input():
     # HACK: Hacer que CollectFactory me retorne los inputs creados
     sut = Collect()
-    sut.add_input("random input 1")
-    sut.add_input("random input 2")
+    sut.add_input(InputDto(None,"random input 1",None))
+    sut.add_input(InputDto(None,"random input 2",None))
     inputs = sut.getAll()
     assert inputs[0].id() != inputs[1].id()
 
