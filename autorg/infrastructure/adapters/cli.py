@@ -1,6 +1,6 @@
 import click
 import sys
-from autorg.application.dtos.input_dto import InputDto, make_dto_from_input
+from autorg.application.dtos.input_dto import InputDto 
 
 from autorg.application.input import AppInput
 from autorg.infrastructure.adapters.csvrepository import CsvRepository
