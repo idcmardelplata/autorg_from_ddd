@@ -3,7 +3,7 @@
 pkgname=autorg_from_ddd
 pkgver=0.1.0
 pkgrel=1
-pkgdesc="Gtd for the command line"
+pkgdesc="Get organized"
 arch=('any')
 url="https://github.com/Jose-Simon-Pepe/autorg_from_ddd"
 license=('MIT')
