@@ -15,18 +15,24 @@ class Collect(Entity):
     def id(self) -> int:
         return self._id
 
-    def add_input(self, input_dto: InputDto):
+    #NOTE: Dado que collect es una entidad que tiene como finalidad
+    # servir como punto de entrada al dominio, los datos que deben tratarse
+    # en los metodos que expone deben ser datos primitivos.
+    def add_input(self, data: str):
          if len(self._inputs) == 0:
              self._inputs = self._repo.getAll()
 
-         if not self._isDuplicate(input_dto.content):
-            inp = self._make_input(input_dto.content)
+         if not self._isDuplicate(data):
+            inp = self._make_input(data)
             self._repo.store(inp)
             self._inputs.append(inp)
          else:
             raise DuplicateInputError("Input exists")
 
-    def getAll(self) -> list[InputDto]:
+    def getAll(self) -> list[Input]:
+        # NOTE: Dado que  collect es un aggregate debe retornar datos primitivos
+        # o datos del dominio, los dtos deben ser creados y asignados en la capa de aplicacion 
+        # pero nunca retornar dtos desde el dominio.
         return self._inputs if len(self._inputs) > 0 else self._repo.getAll()
 
     def _gen_input_id(self) -> int:
@@ -37,6 +43,6 @@ class Collect(Entity):
     def _isDuplicate(self, content) -> bool:
         return content in [inp.content() for inp in self._inputs] 
 
-    def _make_input(self, content) -> Input:
+    def _make_input(self, content: str) -> Input:
         return Input(content=content, id=self._gen_input_id())
     

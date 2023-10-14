@@ -1,7 +1,6 @@
 from autorg.domain.aggregates.collect import Collect
 import os
 from autorg.domain.entities.input import Input
-from autorg.application.dtos.input_dto import InputDto
 import pytest
 from autorg.domain.protocols.repository import Repository
 from autorg.infrastructure.adapters.csvrepository import CsvRepository
@@ -18,7 +17,7 @@ class TestAppInput:
     def test_app_should_has_add_input_case(self):
         repo = CsvRepository()
         app = AppInput(repo)
-        app.add_input(InputDto(None,"input content",None))
+        app.add_input("input content")
         result = repo.getAll()
 
         assert type(result) is list

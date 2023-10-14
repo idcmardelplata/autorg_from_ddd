@@ -20,7 +20,7 @@ def inbox():
 def add_command(input_: str):
     try:
         app = AppInput(CsvRepository())
-        app.add_input(InputDto(None, input_, None))
+        app.add_input(input_)
         click.echo("The input was saved correctly", color=True)
     except Exception as err:
         click.echo(click.style(f"Failed adding input, {err}", fg="red"), file=sys.stderr)

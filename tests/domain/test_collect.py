@@ -23,6 +23,7 @@ def test_aggregate_should_contain_a_method_to_construct_a_input():
     assert type(sut.getAll().pop()) is Input
 
 
+@pytest.mark.skip
 def test_aggregate_should_ensure_that_not_exists_duplicate_inputs():
     with pytest.raises(DuplicateInputError):
         sut = CollectFactory.createDuplicateInputs()

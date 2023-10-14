@@ -33,28 +33,28 @@ class TestRepo:
 
     @pytest.mark.integration
     def test_repo_should_store_data_in_csv_file(self):
-        self.collect.add_input(InputDto(None,"First",None))
-        self.collect.add_input(InputDto(None,"Second",None))
+        self.collect.add_input("First")
+        self.collect.add_input("Second")
         assert len(self.collect.getAll()) == 2
 
     @pytest.mark.integration
     def test_should_return_all_inputs(self):
         items = ["First element", "second input", "third input", "more content"]
         for item in items:
-            self.collect.add_input(InputDto(None,item,None))
+            self.collect.add_input(item)
 
         assert len(self.collect.getAll()) == len(items)
 
     @pytest.mark.integration
     def test_input_id_should_increment_in_each_new_input(self):
-        self.collect.add_input(InputDto(None,"First",None))
+        self.collect.add_input("First")
         assert self.collect.getAll()[0].id() == 0
-        self.collect.add_input(InputDto(None,"another input 1",None))
-        self.collect.add_input(InputDto(None,"another input 2",None))
+        self.collect.add_input("another input 1")
+        self.collect.add_input("another input 2")
         assert self.collect.getAll()[2].id() == 2
     
     def test_literal_content_should_be_the_same(self):
-        self.collect.add_input(InputDto(None,"item",None))
+        self.collect.add_input("item")
         result = self.collect.getAll().pop()
         assert type(result) is Input
         assert result.value()["content"] == "item"
