@@ -32,17 +32,17 @@ jobs:
           fetch-depth: 0
       # Run your actual job
       - name: Run unit tests
+        id: unit_test
         continue-on-error: true
         run: |
           poetry run python ci/commit_stage.py
         
-      - name: Revert pushed commit
-        if: ${{ failure() }}
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git revert --no-edit HEAD
-          git push
+      - name: Undo Push
+        uses: exions/undo-push@v1
+        if: steps.unit_test.outputs.exit_status != 0
+        with:
+          branch: ${{ github.event.inputs.branch }}
+        
       - name: Build the application
         if: startsWith(github.ref, 'refs/tags')  
         run: |
