@@ -1,5 +1,4 @@
-<<<<<<< HEAD
----
+
 name: Commit stage
 run-name: ${{github.actor}} esta probando el commit
 on:
