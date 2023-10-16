@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Check out repo and set up Python   #
+      # Check out repo and set up Python  
       - name: Check out the repository
         uses: actions/checkout@v3
       - name: "Setup Python, Poetry and Dependencies"
@@ -39,7 +39,7 @@ jobs:
           poetry run python ci/commit_stage.py
          
       - name: Revert pushed commit
-        if: steps.unit_test.outputs.exit_status != 0
+        if: steps.unit_test.outcome == 'failure'
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
