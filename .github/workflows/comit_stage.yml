@@ -9,6 +9,12 @@ on:
             - 'infra/**'
             - '.gitignore'
             - 'README.md'
+    workflow_dispatch:
+        inputs:
+          branch:
+            description: "revert on fail"
+            required: true
+            default: 'revert_branch'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -22,12 +28,21 @@ jobs:
         with:
           python-version: 3.11.3
           poetry-version: 1.4.2
-
+          ref: ${{ github.event.inputs.branch }}
+          fetch-depth: 0
       # Run your actual job
       - name: Run unit tests
+        continue-on-error: true
         run: |
           poetry run python ci/commit_stage.py
-
+        
+      - name: Revert pushed commit
+        if: ${{ failure() }}
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git revert --no-edit HEAD
+          git push
       - name: Build the application
         if: startsWith(github.ref, 'refs/tags')  
         run: |
