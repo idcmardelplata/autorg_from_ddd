@@ -38,11 +38,6 @@ jobs:
         run: |
           poetry run python ci/commit_stage.py
          
-      - name: Checkout branch
-        uses: actions/checkout@v2
-        with:
-           ref: ${{ github.event.inputs.branch }}
-           fetch-depth: 0
       - name: Revert pushed commit
         if: steps.unit_test.outputs.exit_status != 0
         run: |
