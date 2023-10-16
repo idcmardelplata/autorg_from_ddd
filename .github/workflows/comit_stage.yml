@@ -12,7 +12,7 @@ on:
     workflow_dispatch:
         inputs:
           branch:
-            description: "revert on fail"
+            description: "undo on fail"
             required: true
             default: 'main'
 jobs:
@@ -30,6 +30,7 @@ jobs:
           poetry-version: 1.4.2
           ref: ${{ github.event.inputs.branch }}
           fetch-depth: 0
+          
       # Run your actual job
       - name: Run unit tests
         id: unit_test
@@ -39,7 +40,7 @@ jobs:
         
       - name: Undo Push
         uses: exions/undo-push@v1
-        if: steps.unit_test.outputs.exit_status != 0
+        #if: steps.unit_test.outputs.exit_status != 0
         with:
           branch: ${{ github.event.inputs.branch }}
         
