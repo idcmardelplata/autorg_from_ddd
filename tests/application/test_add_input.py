@@ -27,3 +27,6 @@ class TestAppInput:
         app = AppInput(repo)
         with pytest.raises(EmptyValueError):
             app.add_input("")
+
+    def test_fail(self):
+        assert False
