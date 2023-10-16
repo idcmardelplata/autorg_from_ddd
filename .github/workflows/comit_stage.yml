@@ -37,12 +37,19 @@ jobs:
         continue-on-error: true
         run: |
           poetry run python ci/commit_stage.py
-        
-      - name: Undo Push
-        uses: exions/undo-push@v1
-        #if: steps.unit_test.outputs.exit_status != 0
+         
+      - name: Checkout branch
+        uses: actions/checkout@v2
         with:
-          branch: ${{ github.event.inputs.branch }}
+           ref: ${{ github.event.inputs.branch }}
+           fetch-depth: 0
+      - name: Revert pushed commit
+        if: steps.unit_test.outputs.exit_status != 0
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git revert --no-edit HEAD
+          git push
         
       - name: Build the application
         if: startsWith(github.ref, 'refs/tags')  
