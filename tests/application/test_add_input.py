@@ -28,5 +28,5 @@ class TestAppInput:
         with pytest.raises(EmptyValueError):
             app.add_input("")
 
-    # def test_fail(self):
-    #     assert False
+    def test_fail(self):
+        assert False
