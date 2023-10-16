@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "autorg-from-ddd"
+version = "0.1.0"
+description = "An implementation of autorg using ddd"
+authors = ["ven <alessandrovmkt@gmail.com>"]
+license = "Free"
+readme = "README.md"
+packages = [{include = "autorg"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+unleashclient = "^5.8.0"
+python-dotenv = "^1.0.0"
+
+[tool.poetry.scripts]
+
+autorg = "autorg.main:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.1"
+dagger-io = "^0.8.4"
+black = "^23.7.0"
+bandit = "^1.7.5"
+vulture = "^2.9.1"
+behave = "^1.2.6"
+mypy = "^1.5.1"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+markers = [
+  "unit",
+  "integration"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

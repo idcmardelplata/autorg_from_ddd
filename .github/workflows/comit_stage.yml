@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 name: Commit stage
 run-name: ${{github.actor}} esta probando el commit
@@ -47,3 +48,58 @@ jobs:
         if: startsWith(github.ref, 'refs/tags')  
         run: |
           poetry run python ci/build_stage.py
+||||||| ed92fb5 (Revert "Update comit_stage.yml")
+=======
+---
+name: Commit stage
+run-name: ${{github.actor}} esta probando el commit
+on:
+    push:
+        paths-ignore:
+            - 'docs/**'
+            - 'build/**'
+            - 'infra/**'
+            - '.gitignore'
+            - 'README.md'
+    workflow_dispatch:
+        inputs:
+          branch:
+            description: "undo on fail"
+            required: true
+            default: 'main'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Check out repo and set up Python  
+      - name: Check out the repository
+        uses: actions/checkout@v3
+      - name: "Setup Python, Poetry and Dependencies"
+        uses: packetcoders/action-setup-cache-python-poetry@main
+        with:
+          python-version: 3.11.3
+          poetry-version: 1.4.2
+          ref: ${{ github.event.inputs.branch }}
+          fetch-depth: 0
+          
+      # Run your actual job
+      - name: Run unit tests
+        id: unit_test
+        continue-on-error: true
+        run: |
+          poetry run python ci/commit_stage.py
+         
+      - name: Revert pushed commit
+        if: steps.unit_test.outcome == 'failure'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git revert --no-edit HEAD
+          git push
+        
+      - name: Build the application
+        if: startsWith(github.ref, 'refs/tags')  
+        run: |
+          poetry run python ci/build_stage.py
+>>>>>>> parent of ed92fb5 (Revert "Update comit_stage.yml")

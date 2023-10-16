@@ -1,0 +1,22 @@
+# Maintainer: Felix Yan <felixonmars@archlinux.org>
+
+pkgname=autorg_from_ddd
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Get organized"
+arch=('any')
+url="https://github.com/Jose-Simon-Pepe/autorg_from_ddd"
+license=('MIT')
+depends=()
+makedepends=('python' 'python-build' 'python-wheel' 'python-pipx' )
+checkdepends=()
+source=("https://github.com/Jose-Simon-Pepe/autorg_from_ddd/blob/main/dist/$pkgname-$pkgver-py3-none-any.whl")
+sha512sums=('SKIP')
+
+package() {
+  git clone $url && cd $pkgname
+
+  pipx install dist/$pkgname-$pkgver-py3-none-any.whl
+}
+
+# vim:set ts=2 sw=2 et:
