@@ -27,8 +27,3 @@ class TestAppInput:
         app = AppInput(repo)
         with pytest.raises(EmptyValueError):
             app.add_input("")
-
-
-    def test_falla(self):
-        """Probar si el sistema ci integra el codigo aun con errores"""
-        assert False
